@@ -1,0 +1,103 @@
+(***************************************************************************************************************)
+(******                       FeynRules model file with top FCNCs                                         ******)
+(******                                                                                                   ******)
+(******     Authors: B. Fuks                                                                              ******)
+(***************************************************************************************************************)
+
+M$ModelName = "tFCNC_anomalous";
+
+M$Information = {
+  Authors -> {"B. Fuks"}, 
+  Version -> "1.0",
+  Date -> "12.09.2022"
+};
+
+FeynmanGauge =False;
+
+M$InteractionOrderHierarchy = { {QCD, 1},  {QED, 2},  {NEW,1}};
+M$InteractionOrderLimit     = { {QCD, 99}, {QED, 99}, {NEW,99}};
+
+(* ************************** *)
+(* *****   Parameters   ***** *)
+(* ************************** *)
+M$Parameters = {
+  NPl     == { TeX -> \[CapitalLambda],    ParameterType -> External,   Value -> 1000,  BlockName -> EFT,   OrderBlock -> 1 },
+
+  (* Charm couplings *)
+  atcL == { TeX->Subsuperscript[g,L,"\[Gamma]tc"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.101,
+            Description -> "Photon-top-charm dipole coupling (left-handed)" , BlockName -> FCNCCHARM, OrderBlock-> 1},
+  atcR == { TeX->Subsuperscript[g,R,"\[Gamma]tc"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.102,
+            Description -> "Photon-top-charm dipole coupling (right-handed)", BlockName -> FCNCCHARM, OrderBlock-> 2},
+  gtcL == { TeX->Subsuperscript[g,L,"gtc"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.103,
+            Description -> "Gluon-top-charm dipole coupling (left-handed)" , BlockName -> FCNCCHARM, OrderBlock-> 3},
+  gtcR == { TeX->Subsuperscript[g,R,"gtc"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.104,
+            Description -> "Gluon-top-charm dipole coupling (right-handed)", BlockName -> FCNCCHARM, OrderBlock-> 4},
+  ztcL1 == { TeX->Subsuperscript[g,L,"Ztc_dip"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.105,
+            Description -> "Z-top-charm dipole coupling (left-handed)" , BlockName -> FCNCCHARM, OrderBlock-> 5},
+  ztcR1 == { TeX->Subsuperscript[g,R,"Ztc_dip"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.106,
+            Description -> "Z-top-charm dipole coupling (right-handed)", BlockName -> FCNCCHARM, OrderBlock-> 6},
+  ztcL2 == { TeX->Subsuperscript[g,L,"Ztc_vec"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.107,
+            Description -> "Z-top-charm vector coupling (left-handed)" , BlockName -> FCNCCHARM, OrderBlock-> 7},
+  ztcR2 == { TeX->Subsuperscript[g,R,"Ztc_vec"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.108,
+            Description -> "Z-top-charm vector coupling (right-handed)", BlockName -> FCNCCHARM, OrderBlock-> 8},
+  htcL == { TeX->Subsuperscript[g,L,"htc"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.109,
+            Description -> "Higgs-top-charm coupling (left-handed)" , BlockName -> FCNCCHARM, OrderBlock-> 9},
+  htcR == { TeX->Subsuperscript[g,R,"htc"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.110,
+            Description -> "Higgs-top-charm coupling (right-handed)", BlockName -> FCNCCHARM, OrderBlock-> 10},
+
+  (* Up couplings *)
+  atuL == { TeX->Subsuperscript[g,L,"\[Gamma]tu"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.201,
+            Description -> "Photon-top-up dipole coupling (left-handed)" , BlockName -> FCNCUP, OrderBlock-> 1},
+  atuR == { TeX->Subsuperscript[g,R,"\[Gamma]tu"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.202,
+            Description -> "Photon-top-up dipole coupling (right-handed)", BlockName -> FCNCUP, OrderBlock-> 2},
+  gtuL == { TeX->Subsuperscript[g,L,"gtu"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.203,
+            Description -> "Gluon-top-up dipole coupling (left-handed)" , BlockName -> FCNCUP, OrderBlock-> 3},
+  gtuR == { TeX->Subsuperscript[g,R,"gtu"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.204,
+            Description -> "Gluon-top-up dipole coupling (right-handed)", BlockName -> FCNCUP, OrderBlock-> 4},
+  ztuL1 == { TeX->Subsuperscript[g,L,"Ztu_dip"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.205,
+            Description -> "Z-top-up dipole coupling (left-handed)" , BlockName -> FCNCUP, OrderBlock-> 5},
+  ztuR1 == { TeX->Subsuperscript[g,R,"Ztu_dip"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.206,
+            Description -> "Z-top-up dipole coupling (right-handed)", BlockName -> FCNCUP, OrderBlock-> 6},
+  ztuL2 == { TeX->Subsuperscript[g,L,"Ztu_vec"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.207,
+            Description -> "Z-top-up vector coupling (left-handed)" , BlockName -> FCNCUP, OrderBlock-> 7},
+  ztuR2 == { TeX->Subsuperscript[g,R,"Ztu_vec"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.208,
+            Description -> "Z-top-up vector coupling (right-handed)", BlockName -> FCNCUP, OrderBlock-> 8},
+  htuL == { TeX->Subsuperscript[g,L,"htu"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.209,
+            Description -> "Higgs-top-up coupling (left-handed)" , BlockName -> FCNCUP, OrderBlock-> 9},
+  htuR == { TeX->Subsuperscript[g,R,"htu"], ParameterType -> External, InteractionOrder -> {NEW, 1}, Value -> 0.210,
+            Description -> "Higgs-top-up coupling (right-handed)", BlockName -> FCNCUP, OrderBlock-> 10}
+};
+
+(* ************************** *)
+(* *****   Lagrangian   ***** *)
+(* ************************** *)
+
+(* Photon interactions *)
+LA:= atcL/NPl * I/2 * (Ga[mu,sp1,sp2] Ga[nu,sp2,sp3] - Ga[nu,sp1,sp2] Ga[mu,sp2,sp3]) ProjM[sp3,sp4] * FS[A,mu,nu] tbar[sp1,cc].c[sp4,cc] \
+   + atcR/NPl * I/2 * (Ga[mu,sp1,sp2] Ga[nu,sp2,sp3] - Ga[nu,sp1,sp2] Ga[mu,sp2,sp3]) ProjP[sp3,sp4] * FS[A,mu,nu] tbar[sp1,cc].c[sp4,cc] \
+   + atuL/NPl * I/2 * (Ga[mu,sp1,sp2] Ga[nu,sp2,sp3] - Ga[nu,sp1,sp2] Ga[mu,sp2,sp3]) ProjM[sp3,sp4] * FS[A,mu,nu] tbar[sp1,cc].u[sp4,cc] \
+   + atuR/NPl * I/2 * (Ga[mu,sp1,sp2] Ga[nu,sp2,sp3] - Ga[nu,sp1,sp2] Ga[mu,sp2,sp3]) ProjP[sp3,sp4] * FS[A,mu,nu] tbar[sp1,cc].u[sp4,cc];
+
+(* Z interactions *)
+LZ:= ztcL1/NPl * I/2 * (Ga[mu,sp1,sp2] Ga[nu,sp2,sp3] - Ga[nu,sp1,sp2] Ga[mu,sp2,sp3]) ProjM[sp3,sp4] * FS[Z,mu,nu] tbar[sp1,cc].c[sp4,cc] \
+   + ztcR1/NPl * I/2 * (Ga[mu,sp1,sp2] Ga[nu,sp2,sp3] - Ga[nu,sp1,sp2] Ga[mu,sp2,sp3]) ProjP[sp3,sp4] * FS[Z,mu,nu] tbar[sp1,cc].c[sp4,cc] \
+   + ztcL2 * Ga[mu,sp1,sp2] ProjM[sp2,sp4] * Z[mu] tbar[sp1,cc].c[sp4,cc] \
+   + ztcR2 * Ga[mu,sp1,sp2] ProjP[sp2,sp4] * Z[mu] tbar[sp1,cc].c[sp4,cc] \
+   + ztuL1/NPl * I/2 * (Ga[mu,sp1,sp2] Ga[nu,sp2,sp3] - Ga[nu,sp1,sp2] Ga[mu,sp2,sp3]) ProjM[sp3,sp4] * FS[Z,mu,nu] tbar[sp1,cc].u[sp4,cc] \
+   + ztuR1/NPl * I/2 * (Ga[mu,sp1,sp2] Ga[nu,sp2,sp3] - Ga[nu,sp1,sp2] Ga[mu,sp2,sp3]) ProjP[sp3,sp4] * FS[Z,mu,nu] tbar[sp1,cc].u[sp4,cc] \
+   + ztuL2 * Ga[mu,sp1,sp2] ProjM[sp2,sp4] * Z[mu] tbar[sp1,cc].u[sp4,cc] \
+   + ztuR2 * Ga[mu,sp1,sp2] ProjP[sp2,sp4] * Z[mu] tbar[sp1,cc].u[sp4,cc];
+
+(* Higgs interactions *)
+LH:= htcL * ProjM[sp1,sp4] * H tbar[sp1,cc].c[sp4,cc] \
+   + htcR * ProjP[sp1,sp4] * H tbar[sp1,cc].c[sp4,cc] \
+   + htuL * ProjM[sp1,sp4] * H tbar[sp1,cc].u[sp4,cc] \
+   + htuR * ProjP[sp1,sp4] * H tbar[sp1,cc].u[sp4,cc];
+
+(* Gluon interactions *)
+LG:= gtcL/NPl * I/2 T[aa,cc,dd] * (Ga[mu,sp1,sp2] Ga[nu,sp2,sp3] - Ga[nu,sp1,sp2] Ga[mu,sp2,sp3]) ProjM[sp3,sp4] * FS[G,mu,nu,aa] tbar[sp1,cc].c[sp4,dd] \
+   + gtcR/NPl * I/2 T[aa,cc,dd] * (Ga[mu,sp1,sp2] Ga[nu,sp2,sp3] - Ga[nu,sp1,sp2] Ga[mu,sp2,sp3]) ProjP[sp3,sp4] * FS[G,mu,nu,aa] tbar[sp1,cc].c[sp4,dd] \
+   + gtuL/NPl * I/2 T[aa,cc,dd] * (Ga[mu,sp1,sp2] Ga[nu,sp2,sp3] - Ga[nu,sp1,sp2] Ga[mu,sp2,sp3]) ProjM[sp3,sp4] * FS[G,mu,nu,aa] tbar[sp1,cc].u[sp4,dd] \
+   + gtuR/NPl * I/2 T[aa,cc,dd] * (Ga[mu,sp1,sp2] Ga[nu,sp2,sp3] - Ga[nu,sp1,sp2] Ga[mu,sp2,sp3]) ProjP[sp3,sp4] * FS[G,mu,nu,aa] tbar[sp1,cc].u[sp4,dd];
+
+Ltfcnc:= LA + LZ + LG + HC[LA + LZ + LG] + LSM ;
